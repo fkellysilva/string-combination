@@ -2,23 +2,46 @@ import { useState } from 'react';
 import './App.css'
 
 function App() {
-  const [firstName, setFirstName] = useState('" "');
-  const [lastName, setLastName] = useState('" "');
-  const [city, setCity] = useState('" "');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [city, setCity] = useState('');
 
   const toCapitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    if (!str) return '';
+    return str
+      .split(/\s+/)
+      .filter(word => word.length > 0)
+      .map(word =>
+        word
+          .split('-')
+          .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+          .join('-')
+      )
+      .join(' ');
   }
 
   const removeMultipleSpaces = (str: string) => {
-    if (str === '') return '" "';
-    return str.replace(/\s+/g, ' ');
+    return str.trim().replace(/\s+/g, ' ');
   }
 
   const handleReset = () => {
-    setFirstName('" "');
-    setLastName('" "');
-    setCity('" "');
+    setFirstName('');
+    setLastName('');
+    setCity('');
+  }
+
+  const handleNameInput = (value: string) => {
+    const cleanValue = removeMultipleSpaces(value);
+    return toCapitalize(cleanValue);
+  }
+
+  const handleCityInput = (value: string) => {
+    if (!value) return '';
+    
+    const endsWithSpace = value.endsWith(' ');
+    const cleanValue = value.replace(/\s+/g, ' ').replace(/^\s+/, '');
+    
+    return toCapitalize(cleanValue) + (endsWithSpace ? ' ' : '');
   }
 
   return (
@@ -36,7 +59,8 @@ function App() {
               <input
                 className="field-input"
                 placeholder="Ex: João"
-                onChange={(event) => setFirstName(toCapitalize(removeMultipleSpaces(event.target.value.trim())))}
+                value={firstName}
+                onChange={(event) => setFirstName(handleNameInput(event.target.value))}
               />
             </label>
 
@@ -45,7 +69,8 @@ function App() {
               <input
                 className="field-input"
                 placeholder="Ex: Silva"
-                onChange={(event) => setLastName(toCapitalize(removeMultipleSpaces(event.target.value.trim())))}
+                value={lastName}
+                onChange={(event) => setLastName(handleNameInput(event.target.value))}
               />
             </label>
           </div>
@@ -55,7 +80,8 @@ function App() {
             <input
               className="field-input"
               placeholder="Ex: São Paulo"
-              onChange={(event) => setCity(toCapitalize(removeMultipleSpaces(event.target.value.trim())))}
+              value={city}
+              onChange={(event) => setCity(handleCityInput(event.target.value))}
             />
           </label>
           <label className="field">
@@ -63,7 +89,7 @@ function App() {
             <input
               className="field-input result-input"
               readOnly
-              value={`${firstName} | ${lastName} | ${city}`}
+              value={`${firstName.length > 0 ? firstName : '" "'} | ${lastName.length > 0 ? lastName : '" "'} | ${city.length > 0 ? city : '" "'}`}
             />
           </label>
 
