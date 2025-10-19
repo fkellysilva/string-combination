@@ -1,42 +1,128 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+  padding: 1rem;
 }
 
 .card {
-  padding: 2em;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+  padding: 24px;
 }
 
-.read-the-docs {
-  color: #888;
+.card-header {
+  margin-bottom: 8px;
+}
+
+.card-header h1 {
+  margin: 0;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 12px;
+  color: #475569;
+  margin-bottom: 6px;
+  text-align: left;
+  width: 100%;
+}
+
+.field-input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 160ms, border-color 160ms;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: text;
+  color: #334155;
+}
+
+.field-input:focus {
+  border-color: #94a3b8;
+  box-shadow: 0 6px 18px rgba(14, 165, 164, 0.08);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.btn-group {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: #0ea5a4;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background: #089995;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+.result-input {
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  cursor: not-allowed;
+  user-select: all;
+}
+
+.field-input:focus.result-input {
+  background-color: #f8fafc !important;
+
 }
